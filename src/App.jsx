@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
+import data from './db/data.json'
 import axios from 'axios';
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     // JSON Server에서 데이터 가져오기
-    axios.get('http://localhost:3001/posts')
+    axios.get(data)
       .then(response => {
         setPosts(response.data);
       })
@@ -33,7 +33,7 @@ function App() {
       <h1>Vite + React + Dummy DB</h1>
       
       <ul>
-        {posts.map(post => (
+        {data.posts.map(post => (
           <li key={post.id}>
             {post.title} - by {post.author}
           </li>
